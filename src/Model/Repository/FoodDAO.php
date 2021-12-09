@@ -9,10 +9,18 @@ class FoodDAO{
 
     private $db;
 
+    /**
+     * @brief Constructeur : FoodDAO.
+     * @param $db : La base de données.
+     */
     public function __constr($db){
         $this->db = $db;
     }
 
+    /**
+     * @brief Requête permettant de récupérer le nom d'un Food par son identifiant.
+     * @param $name : nom de la Food.
+     */
     public function selectIdByName($name){
         $query = "SELECT id FROM food WHERE name = :name";
         $params = array(":name" => $name);
@@ -20,6 +28,9 @@ class FoodDAO{
         return (int) $statement->fetch(PDO::FETCH_COLUMN, 0);
     }
 
+    /**
+     * @brief Requête permettant de récupérer la super catégorie.
+     */
     public function selectRootCategories(){
         $query ="
             SELECT id, name
@@ -33,6 +44,10 @@ class FoodDAO{
         return $statement->fetchAll(PDO::HETCH_FUNC, "self::mapToEntity");
     }
 
+    /**
+     * @brief Requête permettant de récupérer la sous-catégorie à partir de l'identifiant du parent.
+     * @param $parentId : L'identifiant du parent.
+     */
     public function selectSubCategoriesByParentId($parentId){
         $query = "
         SELECT id, name
@@ -49,6 +64,10 @@ class FoodDAO{
         return $statement->fetchAll(PDO::FETCH_FUNC, "self::mapToEntity");
     }
 
+    /**
+     * @brief Requête permettant de récupérer la super catégorie à partir de l'identifiant du parent.
+     * @param $parentId : L'identifiant du parent.
+     */
     public function selectSuperCategoriesByParentId($parentId){
         $query = "
         SELECT id, name
@@ -64,6 +83,10 @@ class FoodDAO{
         return $statement->fetchAll(PDO::FETCH_FUNC, "self::mapToEntity");
     }
 
+    /**
+     * @brief Compte les Food.
+     * @param $name : Nom de la Food.
+     */
     public function countByName($name){
         $query = "
         SELECT COUNT(id)
@@ -74,6 +97,10 @@ class FoodDAO{
         return (int) $statement->fetch(PDO::FETCH_COLUMN, 0);
     }
 
+    /**
+     * @brief Insert une Food.
+     * @param $food : La Food à insérer.
+     */
     public function insert($food){
         $query = "INSERT INTO food(id, name) VALUES (:id, :name);";
         $params = array(
