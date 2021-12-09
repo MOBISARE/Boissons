@@ -1,7 +1,7 @@
 Quelques notes de mises en formes du projet :
 
 Répertoire src
--Mise en forme d'une architecture MVC
+// Mise en forme d'une architecture MVC
     - Model
         . Entity
             -> Food.php
@@ -42,7 +42,7 @@ Répertoire public
     -scripts
     -styles
     -webfonts
-    -favicon
+    -favicon.ico
     -index.php
 
 Répertoire resources
