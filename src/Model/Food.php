@@ -4,9 +4,9 @@ namespace src\Model\Entity;
 
 class Food{
 
-    private $id
+    private $id;
 
-    private $name
+    private $name;
 
     public function __construct($id, $name){
         $this->id = $id;
